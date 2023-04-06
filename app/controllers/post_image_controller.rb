@@ -1,0 +1,2 @@
+class PostImageController < ApplicationController
+end
