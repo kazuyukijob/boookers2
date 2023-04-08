@@ -5,6 +5,9 @@ class UsersController < ApplicationController
      @books = @user.books
      @book = Book.new
      @book_comment = BookComment.new
+     @posts = @user.posts.page(params[:page]).reverse_order
+     @following_users = @user.following_user
+     @follower_users = @user.follower_user
   end
 
   def update
@@ -25,6 +28,15 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+  def follows
+  user = User.find(params[:id])
+  @users = user.following_user.page(params[:page]).per(3).reverse_order
+  end
+
+  def followers
+  user = User.find(params[:id])
+  @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
 
   def user_params
