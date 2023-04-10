@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   before_action :ensure_current_user, {only: [:edit, :update]}
   def show
      @user = User.find(params[:id])
-     @books = @user.books
+     #@books = @user.books
      @book = Book.new
      @book_comment = BookComment.new
-     @posts = @user.posts.page(params[:page]).reverse_order
-     @following_users = @user.following_user
-     @follower_users = @user.follower_user
+     @books = @user.books.reverse_order
+     @following_users = @user.followings
+     @follower_users = @user.followers
   end
 
   def update
@@ -31,12 +31,12 @@ class UsersController < ApplicationController
   end
   def follows
   user = User.find(params[:id])
-  @users = user.following_user.page(params[:page]).per(3).reverse_order
+  @users = user.followings.reverse_order
   end
 
   def followers
   user = User.find(params[:id])
-  @users = user.follower_user.page(params[:page]).per(3).reverse_order
+  @users = user.followers.reverse_order
   end
 
   def user_params
