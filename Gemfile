@@ -57,3 +57,4 @@ group :test do
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'font-awesome-sass'
+gem 'jquery-rails'
